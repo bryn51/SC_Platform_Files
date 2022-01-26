@@ -18,11 +18,11 @@ This file provides linkage for the following sensors:
 - INA219 Voltage and Current (2 Measures)
 - SCD41 CO2, Temp and RH (3 Measures)
 - ADC Board Spec Sensors: (All Spec Sensors devices)
---CO,
---NO2
---SO2,
---H2S
---O3
+- - CO,
+- - NO2
+- - SO2,
+- - H2S
+- - O3
 
 -GPS (Lat, Long, Alt, Speed etc)
 
