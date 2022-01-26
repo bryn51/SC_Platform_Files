@@ -1,0 +1,655 @@
+// 20220125161138
+// this is a novel blueprint file for SCS V3 + 5ELECTRO_SCD41_WINDRAIN_2PM_INA
+// original sourced from : https://raw.githubusercontent.com/fablabbcn/smartcitizen-data/master/blueprints/sc_21_station_module.json
+
+{
+  "clean_na": null,
+  "documentation": "https://docs.smartcitizen.me/",
+  "frequency": null,
+  "id": null,
+  "info_data_file": null,
+  "timezone": null,
+  "max_date": null,
+  "metrics": {
+    "CCS811_ECO2_CLEAN": {
+      "desc": "eCO2 cleaned data",
+      "kwargs": {
+        "limits": [
+          400,
+          65000
+        ],
+        "name": "CCS811_ECO2",
+        "window_size": 5,
+        "window_type": null
+      },
+      "process": "clean_ts",
+      "units": "ppm",
+      "post": false,
+      "id": null
+    },
+    "CCS811_VOCS_CLEAN": {
+      "desc": "Volatile Organic Compounds cleaned data",
+      "kwargs": {
+        "limits": [
+          0,
+          65000
+        ],
+        "name": "CCS811_VOCS",
+        "window_size": 5,
+        "window_type": null
+      },
+      "process": "clean_ts",
+      "units": "ppb",
+      "post": false,
+      "id": null
+    },
+    "EXT_PM_10_CLEAN": {
+      "desc": "PM10 calculated based on both PMS5003 PM10 inputs",
+      "kwargs": {
+        "factor": 0.3,
+        "limits": [
+          0,
+          1000
+        ],
+        "names": [
+          "EXT_PM_A_10",
+          "EXT_PM_B_10"
+        ],
+        "pick": "min",
+        "window_size": 5,
+        "window_type": null
+      },
+      "process": "merge_ts",
+      "units": "ug/m3",
+      "post": true,
+      "id": 88
+    },
+    "EXT_PM_1_CLEAN": {
+      "desc": "PM1 calculated based on both PMS5003 PM1 inputs",
+      "kwargs": {
+        "factor": 0.3,
+        "limits": [
+          0,
+          1000
+        ],
+        "names": [
+          "EXT_PM_A_1",
+          "EXT_PM_B_1"
+        ],
+        "pick": "min",
+        "window_size": 5,
+        "window_type": null
+      },
+      "process": "merge_ts",
+      "units": "ug/m3",
+      "post": true,
+      "id": 89
+    },
+    "EXT_PM_25_CLEAN": {
+      "desc": "PM2.5 calculated based on both PMS5003 PM2.5 inputs",
+      "kwargs": {
+        "factor": 0.3,
+        "limits": [
+          0,
+          1000
+        ],
+        "names": [
+          "EXT_PM_A_25",
+          "EXT_PM_B_25"
+        ],
+        "pick": "min",
+        "window_size": 5,
+        "window_type": null
+      },
+      "process": "merge_ts",
+      "units": "ug/m3",
+      "post": true,
+      "id": 87
+    },
+    "PT1000_POS": {
+      "desc": "PT1000 raw value",
+      "id": null,
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "ASPT1000": {
+      "desc": "PT1000 temperature calculation in AFE",
+      "id": null,
+      "kwargs": {
+        "pt1000minus": null,
+        "from_date": null,
+        "timezone": null,
+        "to_date": null,
+        "pt1000plus": null,
+        "afe_id": null
+      },
+      "post": false,
+      "process": "alphasense_pt1000",
+      "units": "degC"
+    },
+    "EC_SENSOR_TEMP": {
+      "desc": "Electrochemical sensor temperature",
+      "id": "X013",
+      "kwargs": {
+        "priority": "ASPT1000"
+      },
+      "post": false,
+      "process": "ec_sensor_temp",
+      "units": "degC"
+    },
+    "CO_WE": {
+      "desc": "CO working electrode raw value",
+      "id": "X001",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "CO_AE": {
+      "desc": "CO auxiliary electrode raw value",
+      "id": "X002",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "NO2_WE": {
+      "desc": "NO2 working electrode raw value",
+      "id": "X003",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "NO2_AE": {
+      "desc": "NO2 auxiliary electrode raw value",
+      "id": "X004",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "NO_WE": {
+      "desc": "NO working electrode raw value",
+      "id": "X005",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "NO_AE": {
+      "desc": "NO auxiliary electrode raw value",
+      "id": "X006",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "SO2_WE": {
+      "desc": "SO2 working electrode raw value",
+      "id": "X007",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "SO2_AE": {
+      "desc": "SO2 auxiliary electrode raw value",
+      "id": "X008",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "H2S_WE": {
+      "desc": "H2S working electrode raw value",
+      "id": "X009",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "H2S_AE": {
+      "desc": "H2S auxiliary electrode raw value",
+      "id": "X010",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "OX_WE": {
+      "desc": "OX working electrode raw value",
+      "id": "X011",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "OX_AE": {
+      "desc": "OX auxiliary electrode raw value",
+      "id": "X012",
+      "kwargs": {
+        "channel": null
+      },
+      "post": false,
+      "process": "channel_names",
+      "units": "V"
+    },
+    "CO": {
+      "desc": "Calculation of CO based on AAN 803-04",
+      "id": 152,
+      "kwargs": {
+        "ae": null,
+        "alphasense_id": null,
+        "from_date": null,
+        "timezone": null,
+        "t": "EC_SENSOR_TEMP",
+        "to_date": null,
+        "we": null
+      },
+      "post": true,
+      "process": "alphasense_803_04",
+      "units": "ppb"
+    },
+    "NO2": {
+      "desc": "Calculation of NO2 based on AAN 803-04",
+      "id": 153,
+      "kwargs": {
+        "ae": null,
+        "alphasense_id": null,
+        "from_date": null,
+        "timezone": null,
+        "t": "EC_SENSOR_TEMP",
+        "to_date": null,
+        "we": null
+      },
+      "post": true,
+      "process": "alphasense_803_04",
+      "units": "ppb"
+    },
+    "O3": {
+      "desc": "Calculation of O3 based on AAN 803-04",
+      "id": 157,
+      "kwargs": {
+        "ae": null,
+        "alphasense_id": null,
+        "from_date": null,
+        "timezone": null,
+        "t": "EC_SENSOR_TEMP",
+        "to_date": null,
+        "we": null
+      },
+      "post": true,
+      "process": "alphasense_803_04",
+      "units": "ppb"
+    },
+    "SO2": {
+      "desc": "Calculation of SO2 based on AAN 803-04",
+      "id": 155,
+      "kwargs": {
+        "ae": null,
+        "alphasense_id": null,
+        "from_date": null,
+        "timezone": null,
+        "t": "EC_SENSOR_TEMP",
+        "to_date": null,
+        "we": null,
+        "use_alternative": true
+      },
+      "post": true,
+      "process": "alphasense_803_04",
+      "units": "ppb"
+    },
+    "NO": {
+      "desc": "Calculation of NO based on AAN 803-04",
+      "id": 154,
+      "kwargs": {
+        "ae": null,
+        "alphasense_id": null,
+        "from_date": null,
+        "timezone": null,
+        "t": "EC_SENSOR_TEMP",
+        "to_date": null,
+        "we": null
+      },
+      "post": true,
+      "process": "alphasense_803_04",
+      "units": "ppb"
+    },
+    "H2S": {
+      "desc": "Calculation of H2S based on AAN 803-04",
+      "id": 156,
+      "kwargs": {
+        "ae": null,
+        "alphasense_id": null,
+        "from_date": null,
+        "timezone": null,
+        "t": "EC_SENSOR_TEMP",
+        "to_date": null,
+        "we": null
+      },
+      "post": true,
+      "process": "alphasense_803_04",
+      "units": "ppb"
+    }
+  },
+  "min_date": null,
+  "platform_id": 28,
+  "processed_data_file": null,
+  "raw_data_file": null,
+  "sensors": {
+    "ADC_48_0": {
+      "desc": "Channel 0 of ADC 0x48",
+      "id": 133,
+      "units": "V"
+    },
+    "ADC_48_1": {
+      "desc": "Channel 1 of ADC 0x48",
+      "id": 134,
+      "units": "V"
+    },
+    "ADC_48_2": {
+      "desc": "Channel 2 of ADC 0x48",
+      "id": 135,
+      "units": "V"
+    },
+    "ADC_48_3": {
+      "desc": "Channel 3 of ADC 0x48",
+      "id": 136,
+      "units": "V"
+    },
+    "ADC_49_0": {
+      "desc": "Channel 0 of ADC 0x49",
+      "id": 138,
+      "units": "V"
+    },
+    "ADC_49_1": {
+      "desc": "Channel 1 of ADC 0x49",
+      "id": 139,
+      "units": "V"
+    },
+    "ADC_49_2": {
+      "desc": "Channel 2 of ADC 0x49",
+      "id": 140,
+      "units": "V"
+    },
+    "ADC_49_3": {
+      "desc": "Channel 3 of ADC 0x49",
+      "id": 141,
+      "units": "V"
+    },
+    "ADC_4A_0": {
+      "desc": "Channel 0 of ADC 0x4A",
+      "id": 143,
+      "units": "V"
+    },
+    "ADC_4A_1": {
+      "desc": "Channel 1 of ADC 0x4A",
+      "id": 144,
+      "units": "V"
+    },
+    "ADC_4A_2": {
+      "desc": "Channel 2 of ADC 0x4A",
+      "id": 145,
+      "units": "V"
+    },
+    "ADC_4A_3": {
+      "desc": "Channel 3 of ADC 0x4A",
+      "id": 146,
+      "units": "V"
+    },
+    "ADC_4B_0": {
+      "desc": "Channel 0 of ADC 0x4B",
+      "id": 148,
+      "units": "V"
+    },
+    "ADC_4B_1": {
+      "desc": "Channel 1 of ADC 0x4B",
+      "id": 149,
+      "units": "V"
+    },
+    "ADC_4B_2": {
+      "desc": "Channel 2 of ADC 0x4B",
+      "id": 150,
+      "units": "V"
+    },
+    "ADC_4B_3": {
+      "desc": "Channel 3 of ADC 0x4B",
+      "id": 151,
+      "units": "V"
+    },
+    "CCS811_ECO2": {
+      "desc": "Equivalent CO2",
+      "id": "112",
+      "units": "ppm"
+    },
+    "CCS811_VOCS": {
+      "desc": "total Volatile Organics Compounds",
+      "id": "113",
+      "units": "ppm"
+    },
+    "EXT_PM_A_1": {
+      "desc": "PM1 measurement from PMS5003 A",
+      "id": "71",
+      "units": "ug/m3"
+    },
+    "EXT_PM_A_10": {
+      "desc": "PM10 measurement from PMS5003 A",
+      "id": "73",
+      "units": "ug/m3"
+    },
+    "EXT_PM_A_25": {
+      "desc": "PM2.5 measurement from PMS5003 A",
+      "id": "72",
+      "units": "ug/m3"
+    },
+    "EXT_PM_B_1": {
+      "desc": "PM1 measurement from PMS5003 B",
+      "id": "75",
+      "units": "ug/m3"
+    },
+    "EXT_PM_B_10": {
+      "desc": "PM10 measurement from PMS5003 B",
+      "id": "77",
+      "units": "ug/m3"
+    },
+    "EXT_PM_B_25": {
+      "desc": "PM2.5 measurement from PMS5003 B",
+      "id": "76",
+      "units": "ug/m3"
+    },
+    "PM_DALLAS_TEMP": {
+      "desc": "Dallas External probe Temperature",
+      "id": "96",
+      "units": "degC"
+    },
+    "GPS_FIX" : {
+        "desc":"GPS Fix Quality",
+        "id": "128",
+        "units": "nu"
+    },
+    "GPS_LAT": {
+        "desc":"GPS Latitude",
+        "id":"125",
+        "units":"Deg"
+    },
+    "GPS_LONG": {
+        "desc":"GPS Longitude",
+        "id":"126",
+        "units":"Deg"
+    },
+    "GPS_ALT":  {
+        "desc":"GPS Altitude",
+        "id": "127",
+        "units":"m"
+    },
+     "GPS_SPEED": {
+         "desc":"GPS Speed",
+         "id":"129",
+         "units":"m/s"
+    },
+    "GPS_HDOP": {
+        "desc":"GPS Horizontal Dilution of Position",
+        "id": "131",
+        "units": "nu"
+    },
+    "GPS_SATNUM": {
+        "desc":"GPS Tracked Satellites",
+        "id":"130",
+        "units": "nu"
+    },
+    "HUM": {
+      "desc": "Urban board humidity (SHT31)",
+      "id": "56",
+      "units": "%rh"
+    },
+    "LIGHT": {
+      "desc": "Urban board ambient light",
+      "id": "14",
+      "units": "lux"
+    },
+    "NOISE_A": {
+      "desc": "A-weighted noise SPL",
+      "id": "53",
+      "units": "dBA"
+    },
+    "PRESS": {
+      "desc": "Atmospheric pressure",
+      "id": "58",
+      "units": "kPa"
+    },
+    "TEMP": {
+      "desc": "Urban board temperature (SHT31)",
+      "id": "55",
+      "units": "degC"
+    },
+    "SCD4x_TEMP": {
+      "desc": "External temperature (SCD41)",
+      "id": "163",
+      "units": "degC"
+    },
+    "SCD4x_HUM": {
+      "desc": "External humidity (SCD41)",
+      "id": "164",
+      "units": "%rh"
+    },
+    "SCD4x_CO2": {
+      "desc": "CO2 (SCD41)",
+      "id": "162",
+      "units": "ppm"
+    },
+    "WIND_DIR": {
+        "desc":"Wind Direction",
+        "id": "165" ,
+        "units": "degR"
+    },
+    "WIND_SPEED": {
+        "desc":"Wind Speed",
+        "id": "166",
+        "units": "m/s"
+    },
+    "RAIN_ACC" : {	
+        "desc": "Rain Accumulation", 				
+        "id": "167",
+        "units": "mm"
+    },
+    "RAIN_EVENTACC":{
+        "desc": "Rain Event Acc",
+        "id": "168",
+        "units": "mm"
+    },
+    "RAIN_TOTALACC": {
+        "desc":"Rain Total Acc",
+        "id": "169",
+        "units":"mm"
+    },
+    "RAIN_INTERVAL": {
+        "desc":"Rain Per Interval",
+        "id":"170",
+        "units":"mm/h"
+    },
+    "INA_VBUS": {
+        "desc": "SCS 5V PS Rail Voltage",
+        "id": "171",
+        "units":"V"
+    },
+	"INA_CURR": {
+        "desc":	"SCS 5V Rail Current",
+        "id": "172",
+        "units":"mA"
+    },
+	"ENS160_ECO2": {
+        "desc":	"VOC Equiv CO2",
+        "id": "173",
+        "units":"ppm"
+    },
+	"ENS160_TVOC": {
+        "desc":	"Total VOC",
+        "id": "174",
+        "units":"ppb"
+    },
+	"ENS160_AQI": {
+        "desc":	"VOC Air Quality Index",
+        "id": "175",
+        "units":"uAQI"
+    },
+	"ENS210_TEMP": {
+        "desc":	"Temperature",
+        "id": "degC",
+        "units":"mA"
+    },
+	"ENS210_ABSTEMP": {
+        "desc":	"Absolute Temperature",
+        "id": "177",
+        "units":"degK"
+    },
+	"ENS210_HUM": {
+        "desc":	"Relative Humidity",
+        "id": "178",
+        "units":"%"
+    }
+  },
+  "source": null,
+  "sources": {
+    "api": {
+      "handler": "ScApiDevice"
+    },
+    "csv": {
+      "header_skip": [
+        1,
+        2,
+        3
+      ],
+      "index": "TIME",
+      "sep": ",",
+      "tz-aware": true
+    }
+  },
+  "version": null
+}
