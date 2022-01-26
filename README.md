@@ -30,5 +30,7 @@ This file provides linkage for the following sensors:
 - ENS210 Temp & RH
 
 
+In Addition: A pdf document file contains information needed to prepare computation data for the translation of Spc Sensors data into Gas Concentrations
+This information links ADC Board Ports to Physical Gas Sensor connections.
 
 
