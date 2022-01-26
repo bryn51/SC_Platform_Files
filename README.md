@@ -24,10 +24,10 @@ This file provides linkage for the following sensors:
 - - H2S
 - - O3
 
--GPS (Lat, Long, Alt, Speed etc)
+- GPS (Lat, Long, Alt, Speed etc)
 
--ENS160 VOC Gases
--ENS210 Temp & RH
+- ENS160 VOC Gases
+- ENS210 Temp & RH
 
 
 
