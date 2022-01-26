@@ -13,7 +13,7 @@ This file provides linkage for the following sensors:
 - Urban Board VOC gases (2 measures eCO2 && tVOC)
 
 - Aux Bus:
-- PM Dust Sensors *2 (* 3 measures 1.0, 2.5 && 10.0)
+- PM Dust Sensors x 2 ( x 3 measures 1.0, 2.5 && 10.0)
 - PM Board Dallas Ext Temp Probe
 - INA219 Voltage and Current (2 Measures)
 - SCD41 CO2, Temp and RH (3 Measures)
