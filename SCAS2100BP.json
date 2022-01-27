@@ -1,0 +1,5 @@
+{
+  "blueprint_url": "https://github.com/bryn51/SC_Platform_Files/blob/main/SCSV3_WIND_RAIN_module.json",
+  "description": "Smart Citizen Station V3 With 2*PMS5003,Ext Dallas Temp,Wind,Rain,O3,NO2,SO2,H2S,CO,CO2,Ext VOC,AQI,GPS",
+  "versions": []
+}
