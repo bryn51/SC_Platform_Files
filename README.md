@@ -69,9 +69,10 @@ Ext PM_A 10.0:
 Ext PM_B 1.0: 
 Ext PM_B 2.5: 
 Ext PM_B 10.0:
+Noise:
 
 =================
-Total 34 Metrics.
+Total 35 Metrics.
 
 In Addition: A pdf document file contains information needed to prepare computation data for the translation of Spc Sensors data into Gas Concentrations
 This information links ADC Board Ports to Physical Gas Sensor connections.
